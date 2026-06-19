@@ -1,9 +1,223 @@
-<!doctype html>
-<html>
-  <head>
-    <title>TseSpace</title>
-  </head>
-  <body>
-    <p>Welcome to TseSpace. This is a test page.</p>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tse Liang — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f1f1f3;          /* page background */
+      --panel:#ffffff;       /* card */
+      --ink:#0b0b10;         /* primary text */
+      --muted:#6b7280;       /* secondary text */
+      --link:#111827;        /* links */
+      --accent:#111827;      /* small accents */
+      --radius:22px;
+      --shadow:0 10px 30px rgba(0,0,0,.09);
+      --max:1120px;          /* page width */
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    html { scroll-behavior: smooth; }
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; 
+      color:var(--ink);
+      background: radial-gradient(1200px 500px at 70% -10%, #e7e7ea 0%, rgba(231,231,234,0) 60%) , var(--bg);
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+
+    /* nav */
+    .nav{
+      max-width:var(--max); margin:24px auto 0; padding:0 20px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .brand{font-weight:700; letter-spacing:.02em; font-size:14px}
+    .menu{display:flex; gap:18px; align-items:center}
+    .menu a{
+      text-decoration:none; color:var(--ink); font-size:14px; opacity:.8; transition: opacity 0.2s ease;
+    }
+    .menu a:hover{opacity:1;}
+    .play{
+      width:34px;height:26px;border:1px solid #ddd;border-radius:8px;
+      display:grid;place-items:center;background:#fff; box-shadow:var(--shadow);
+      cursor:pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .play:hover{transform: translateY(-1px); box-shadow: 0 12px 34px rgba(0,0,0,.12);}
+
+    /* hero panel */
+    .panel{
+      max-width:var(--max); margin:24px auto; padding:0 20px 60px;
+    }
+    .hero{
+      background:var(--panel); border-radius:var(--radius); box-shadow:var(--shadow);
+      padding:48px; display:grid; grid-template-columns:1.2fr .8fr; gap:54px;
+      min-height:520px;
+    }
+    @media (max-width: 900px){
+      .hero{ grid-template-columns:1fr; padding:28px; gap:28px; }
+    }
+    .kicker{font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:700}
+    .headline{font-size:42px; line-height:1.15; font-weight:800; margin:14px 0 20px}
+    .sub{color:var(--muted); max-width:60ch}
+
+    .badgebar{position:absolute; left:48px; bottom:32px; font-size:13px; color:#444}
+
+    .portrait{
+      align-self:end; justify-self:end; width:min(360px,100%);
+      background:#f5f5f6; border-radius:18px; overflow:hidden; box-shadow:var(--shadow);
+    }
+    .portrait img{display:block; width:100%; height:auto}
+
+    /* sections */
+    section{max-width:var(--max); margin:44px auto 0; padding:0 20px}
+    h2{font-size:20px; text-transform:uppercase; letter-spacing:.12em; color:#3f3f46; margin:0 0 14px}
+    .grid{display:grid; grid-template-columns:1fr 1fr; gap:22px}
+    @media (max-width: 900px){ .grid{grid-template-columns:1fr} }
+    .card{
+      background:var(--panel); border-radius:16px; padding:22px 22px; box-shadow:var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 12px 34px rgba(0,0,0,.12); }
+    .card h3{margin:4px 0 2px; font-size:16px}
+    .card .meta{color:var(--muted); font-size:13px}
+    .list{display:grid; gap:12px; margin:0; padding:0; list-style:none}
+    .list li{display:flex; gap:10px}
+    .bullet{width:8px; height:8px; border-radius:2px; background:#d1d5db; margin-top:8px}
+
+    /* footer */
+    footer{max-width:var(--max); margin:60px auto 50px; padding:0 20px; color:var(--muted); font-size:14px}
+
+    /* links */
+    .links{display:flex; flex-wrap:wrap; gap:12px; margin-top:18px}
+    .chip{border:1px solid #e5e7eb; padding:8px 12px; border-radius:999px; text-decoration:none; color:var(--link); background:#fff; transition: all 0.2s ease;}
+    .chip:hover{border-color:#d1d5db; background: #f9fafb; transform: translateY(-1px);}
+  </style>
+</head>
+<body>
+  <!-- Top Navigation -->
+  <nav class="nav" aria-label="Primary">
+    <div class="brand">TSE LIANG ©</div>
+    <div class="menu">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#contact">Contact</a>
+      <div class="play" title="Play intro"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7-11-7z" fill="#111"/></svg></div>
+    </div>
+  </nav>
+
+  <!-- Hero Panel -->
+  <div class="panel">
+    <div class="hero">
+      <div>
+        <div class="kicker">AI Systems • Hardware • Accessibility</div>
+        <h1 class="headline">I design and build machine‑learning systems that run efficiently on hardware— from FPGA‑accelerated medical imaging to AI glasses that assist people with low vision.</h1>
+        <p class="sub">Research engineer with experience across IC design, embedded ML, and product prototyping. I enjoy the place where algorithms, hardware, and human needs meet to tell useful stories.</p>
+        <div class="links">
+          <a class="chip" href="mailto:tse.liang2000@gmail.com">Email</a>
+          <a class="chip" href="https://github.com/tseliang2000" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="chip" href="https://www.linkedin.com/in/tseliang" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="chip" href="#resume">Résumé (PDF)</a>
+        </div>
+      </div>
+      <div class="portrait">
+        <!-- Replace the src with your own headshot -->
+        <img alt="Portrait" src="https://images.unsplash.com/photo-1616469829581-73993eb86b02?q=80&w=1200&auto=format&fit=crop"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- About / Education & Experience -->
+  <section id="about">
+    <h2>About</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Education</h3>
+        <ul class="list">
+          <li><span class="bullet"></span><div><strong>National Yang Ming Chiao Tung University</strong> — M.Sc., ICST (Semiconductor Technology) • Sep 2023 – Jan 2026</div></li>
+          <li><span class="bullet"></span><div><strong>National Tsing Hua University</strong> — B.E., EECS • Sep 2019 – Jun 2023</div></li>
+          <li><span class="bullet"></span><div>TOEFL iBT 101 • CEFR C1; French/Basic German & Spanish</div></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Recent Roles</h3>
+        <ul class="list">
+          <li><span class="bullet"></span><div><strong>Research Intern</strong>, National University of Singapore — Device activity monitor with ML • Jun–Jul 2025</div></li>
+          <li><span class="bullet"></span><div><strong>Research Intern</strong>, Academia Sinica CITI — Hardware/ML research • Jul–Aug 2024; Dec 2024–present</div></li>
+          <li><span class="bullet"></span><div><strong>Google 2023 HPSpr</strong>, Smart Mirror onsite demo • Jun–Sep 2023</div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects / Selected Work -->
+  <section id="projects">
+    <h2>Selected Projects</h2>
+    <div class="grid">
+      <article class="card">
+        <h3>AI Glasses for Low‑Vision Users</h3>
+        <div class="meta">Accessibility • Edge AI • 2025</div>
+        <p>A wearable system that combines TinyML object detection, depth estimation, and conversational assistance to help users navigate and recognize objects in real time.</p>
+      </article>
+      <article class="card">
+        <h3>LightM‑UNet on FPGA</h3>
+        <div class="meta">Medical Imaging • FPGA Acceleration • 2024–2025</div>
+        <p>End‑to‑end acceleration of a lightweight UNet with a Mamba bottleneck. Focus on quantization, memory traffic, and selective‑scan hardware for efficient inference.</p>
+      </article>
+      <article class="card">
+        <h3>Portable EEG‑Based Brain‑Computer Interface</h3>
+        <div class="meta">BCI • Embedded ML • 2023–2024</div>
+        <p>Won multiple awards; co‑authored a paper on an EEG‑based interface for investigating Bach’s effect on Tourette’s syndrome patients (VLSI/DAT 2024).</p>
+      </article>
+      <article class="card">
+        <h3>Physics‑Informed Neural Network Solver</h3>
+        <div class="meta">Scientific ML • 2024</div>
+        <p>RISC‑V Creativity Competition (3rd Prize, Application). A PINN approach for partial differential equations with custom training pipeline.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Capabilities / Skills -->
+  <section id="capabilities">
+    <h2>Capabilities</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Core</h3>
+        <ul class="list">
+          <li><span class="bullet"></span><div>Embedded & FPGA: Verilog, high‑level synthesis, memory/throughput optimization</div></li>
+          <li><span class="bullet"></span><div>ML for vision & signals: PyTorch, MONAI/nnU‑Net, quantization & pruning</div></li>
+          <li><span class="bullet"></span><div>Systems: Linux, scripting, reproducible experiments</div></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Awards & Honors (selected)</h3>
+        <ul class="list">
+          <li><span class="bullet"></span><div>Excellent Team Award — NYCU Innovation & Entrepreneurship (2025)</div></li>
+          <li><span class="bullet"></span><div>Andes RISC‑V Creativity — Honorable Mention (Design), 3rd Prize (Application) (2023–2024)</div></li>
+          <li><span class="bullet"></span><div>Brain Plus Hand Competition — Honorable Mention, NTHU (2023)</div></li>
+          <li><span class="bullet"></span><div>Yenching Global Symposium Delegate (2024); UPG Sustainability Leader (2024)</div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="card">
+      <p>Email: <a href="mailto:tse.liang2000@gmail.com">tse.liang2000@gmail.com</a></p>
+      <p>GitHub: <a href="https://github.com/tseliang2000" target="_blank" rel="noreferrer">github.com/tseliang2000</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/tseliang" target="_blank" rel="noreferrer">linkedin.com/in/tseliang</a></p>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="y"></span> Tse Liang. Built with semantic HTML & CSS. No frameworks.
+  </footer>
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body>
 </html>
